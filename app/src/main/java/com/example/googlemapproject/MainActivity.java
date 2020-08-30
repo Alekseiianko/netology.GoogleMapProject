@@ -11,9 +11,6 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     private EditText editText;
-    private Intent intent;
-    private String text;
-    private char[] arrayOfChars;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +20,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void searchMethod(View view) {
-        text = editText.getText().toString();
-        arrayOfChars = text.toCharArray();
+        String text = editText.getText().toString();
+        char[] arrayOfChars = text.toCharArray();
+        Intent intent = new Intent(Intent.ACTION_VIEW);
         if(Character.isLetter(arrayOfChars[0])){
-            intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("geo:?q=Moscow"));
-            startActivity(intent);
         } else {
-            intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("geo:55.704968, 37.625206"));
-            startActivity(intent);
         }
+        startActivity(intent);
     }
 }
